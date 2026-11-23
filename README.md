@@ -7,6 +7,9 @@ the stress tests and logs used to tune it. It was built for one machine with **p
 GPUs (Tesla P100)** cooled by shroud fans on the DIMM headers, but the driver, the header map (§2)
 and the daemon should work on any P620 (tested on one). On another P620, replace the GPU UUIDs and curves with your own (§6, §7).
 
+> **Use at your own risk.** This takes manual control of your fans. No warranty, and the author is
+> not liable for any damage or misuse; see the [disclaimer](#disclaimer) (§13).
+
 Everything needed to rebuild the fan control on this Lenovo ThinkStation P620 after an OS reinstall
 or a move to another Linux distribution. Built and verified 16–18 Nov 2026 on Ubuntu 24.04, moved to Ubuntu 26.04 on 20–23 Nov 2026 (last update:
 config v10, 15k rpm cap on the P100 shroud fans).
@@ -700,5 +703,14 @@ The scripts, configs, KDE page and documentation in this repository are released
 [nct6687d](https://github.com/Fred78290/nct6687d) by Frederic Boltz, licensed under GPL-2.0
 (see its own `LICENSE`).
 
-No warranty: you are taking manual control of the fans. A wrong curve or a stopped service can
+### Disclaimer
+
+This kit is provided **as is, without any warranty**, and you use it **entirely at your own risk**.
+It loads a third-party kernel driver, overrides the firmware fan control and runs stress tests that
+push the CPU and GPUs to full load. A wrong curve, a wrong header mapping or a stopped service can
 let passive GPUs or the CPU overheat. Watch temperatures after every change (§4, §9).
+
+The author is **not responsible or liable** for any damage to hardware, data loss, voided warranty,
+injury or any other loss resulting from using, misusing or modifying anything in this repository,
+nor for any improper or unlawful use of it. Lenovo, ThinkStation, NVIDIA, Tesla and Quadro are
+trademarks of their owners; this project is not affiliated with or endorsed by them.
