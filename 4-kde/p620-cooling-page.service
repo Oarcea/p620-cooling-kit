@@ -1,0 +1,10 @@
+[Unit]
+Description=Regenerate the KDE "GPUs & Cooling" page for the current GPU slot layout
+After=graphical-session-pre.target
+
+[Service]
+Type=oneshot
+ExecStart=/usr/bin/python3 -I %h/.local/bin/p620-cooling-page --install
+
+[Install]
+WantedBy=default.target

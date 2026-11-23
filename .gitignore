@@ -1,0 +1,13 @@
+# Built locally (see README §4c): gcc -O2 -mavx2 -mfma -fopenmp -o 5-tests/cpu/cpu_burn 5-tests/cpu/cpu_burn.c
+5-tests/cpu/cpu_burn
+
+# Working logs from the test scripts; results worth keeping go to 6-results/
+5-tests/p620_diag/
+
+# Written by 1-driver/install-driver.sh on every run
+1-driver/install.log
+
+# Python / CMake build leftovers
+__pycache__/
+*.pyc
+build/

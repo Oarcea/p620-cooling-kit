@@ -1,0 +1,39 @@
+Target 75 °C for 900 s.  pwm6 -> P100-1 (GPU-5bb70be1-f1d0-4c22-c42f-064d81590f4d),  pwm7 -> P100-2 (GPU-0bb243e3-ae6e-e054-68fc-cc5845ded711)
+p620-fans stopped for the test
+t=  30s Tctl 69 | P100-1 70°C 233.73W 1303MHz duty    30%  5429rpm | P100-2 71°C 232.89W 1303MHz duty    30%  5660rpm
+t=  61s Tctl 70 | P100-1 77°C 233.96W 1303MHz duty  58.5%  9836rpm | P100-2 77°C 238.14W 1290MHz duty  57.0% 11214rpm
+t=  92s Tctl 70 | P100-1 76°C 248.74W 1303MHz duty  59.5% 11538rpm | P100-2 77°C 242.30W 1278MHz duty  64.0% 12121rpm
+t= 123s Tctl 71 | P100-1 76°C 244.09W 1290MHz duty  62.5% 11428rpm | P100-2 76°C 238.14W 1303MHz duty  65.5% 12371rpm
+t= 154s Tctl 70 | P100-1 76°C 247.07W 1303MHz duty  65.0% 10909rpm | P100-2 76°C 237.90W 1290MHz duty  68.5% 12121rpm
+t= 184s Tctl 71 | P100-1 75°C 239.32W 1303MHz duty  62.0% 11320rpm | P100-2 75°C 242.99W 1278MHz duty  66.0% 12121rpm
+t= 210s Tctl 71 | P100-1 75°C 237.41W 1303MHz duty  62.0% 11320rpm | P100-2 75°C 236.93W 1303MHz duty  66.5% 12500rpm
+t= 241s Tctl 71 | P100-1 75°C 235.98W 1290MHz duty  63.0% 11650rpm | P100-2 75°C 235.74W 1290MHz duty  67.0% 12000rpm
+t= 272s Tctl 71 | P100-1 75°C 228.93W 1303MHz duty  63.0% 11428rpm | P100-2 75°C 230.62W 1278MHz duty  67.5% 12244rpm
+t= 302s Tctl 72 | P100-1 75°C 232.87W 1290MHz duty  63.0% 11538rpm | P100-2 75°C 235.74W 1303MHz duty  67.5% 11881rpm
+t= 333s Tctl 72 | P100-1 75°C 238.12W 1303MHz duty  63.0% 11538rpm | P100-2 75°C 237.17W 1303MHz duty  68.0% 12000rpm
+t= 364s Tctl 72 | P100-1 75°C 236.69W 1303MHz duty  63.0% 11538rpm | P100-2 75°C 237.15W 1303MHz duty  68.0% 12000rpm
+t= 390s Tctl 71 | P100-1 75°C 233.35W 1290MHz duty  63.0% 11320rpm | P100-2 75°C 237.17W 1303MHz duty  68.0% 12121rpm
+t= 421s Tctl 72 | P100-1 75°C 235.26W 1290MHz duty  63.0% 11650rpm | P100-2 75°C 239.55W 1278MHz duty  68.0% 12371rpm
+t= 451s Tctl 72 | P100-1 75°C 244.44W 1303MHz duty  63.0% 11650rpm | P100-2 75°C 237.53W 1303MHz duty  68.5% 12121rpm
+t= 482s Tctl 72 | P100-1 75°C 238.60W 1303MHz duty  63.5% 11538rpm | P100-2 75°C 235.74W 1278MHz duty  69.0% 12500rpm
+t= 513s Tctl 72 | P100-1 75°C 235.50W 1290MHz duty  64.0% 11538rpm | P100-2 75°C 235.28W 1278MHz duty  69.0% 12500rpm
+t= 544s Tctl 72 | P100-1 75°C 231.20W 1303MHz duty  64.0% 11764rpm | P100-2 75°C 243.96W 1290MHz duty  69.0% 12500rpm
+t= 570s Tctl 72 | P100-1 75°C 236.83W 1303MHz duty  64.0%  5825rpm | P100-2 75°C 236.45W 1290MHz duty  69.0% 12371rpm
+t= 600s Tctl 72 | P100-1 75°C 248.71W 1303MHz duty  64.0% 11538rpm | P100-2 75°C 237.41W 1303MHz duty  69.0% 12371rpm
+t= 631s Tctl 72 | P100-1 75°C 249.07W 1290MHz duty  64.0% 11538rpm | P100-2 75°C 223.72W 1278MHz duty  69.0% 12500rpm
+t= 662s Tctl 72 | P100-1 75°C 246.09W 1303MHz duty  64.0% 11650rpm | P100-2 75°C 233.83W 1290MHz duty  69.0%  6153rpm
+t= 693s Tctl 72 | P100-1 75°C 248.48W 1303MHz duty  64.5% 11538rpm | P100-2 75°C 235.98W 1290MHz duty  69.0% 12244rpm
+t= 724s Tctl 72 | P100-1 75°C 238.36W 1303MHz duty  64.5% 11538rpm | P100-2 75°C 248.09W 1278MHz duty  69.0% 12371rpm
+t= 754s Tctl 73 | P100-1 75°C 247.30W 1303MHz duty  65.0% 11881rpm | P100-2 75°C 237.41W 1303MHz duty  69.0% 12244rpm
+t= 780s Tctl 72 | P100-1 75°C 236.21W 1290MHz duty  65.0% 11650rpm | P100-2 75°C 245.35W 1290MHz duty  69.0% 12121rpm
+t= 811s Tctl 72 | P100-1 75°C 236.65W 1290MHz duty  65.0% 11650rpm | P100-2 75°C 236.45W 1278MHz duty  69.0% 12631rpm
+t= 842s Tctl 72 | P100-1 75°C 248.00W 1303MHz duty  65.0%     0rpm | P100-2 75°C 231.80W 1278MHz duty  69.0% 12500rpm
+t= 873s Tctl 72 | P100-1 75°C 246.81W 1303MHz duty  65.0% 11881rpm | P100-2 75°C 232.16W 1278MHz duty  69.0% 12121rpm
+t= 903s Tctl 72 | P100-1 75°C 248.97W 1303MHz duty  65.0%     0rpm | P100-2 75°C 247.61W 1290MHz duty  69.0% 12500rpm
+
+== Result: average over the last third (t >= 600 s)
+P100-1  75.0 °C  241 W  1297 MHz   duty 64.8 % (range 64.0–69.0)  10802 rpm
+P100-2  75.0 °C  237 W  1290 MHz   duty 69.0 % (range 69.0–69.0)  11641 rpm
+Full log: /home/p620/Documents/p620-cooling-kit/5-tests/p620_diag/gpu_fan_target.csv
+[cooldown] load stopped, P100 fans 100% for 30 s
+[restore] p620-fans restarted

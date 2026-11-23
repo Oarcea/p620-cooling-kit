@@ -1,0 +1,54 @@
+cmdline: acpi_enforce_resources=lax
+module:  nct6687                53248  0
+[    3.280790] nct6687: loading out-of-tree module taints kernel.
+[    3.280796] nct6687: module verification failed: signature and/or required key missing - tainting kernel
+[    3.281744] nct6687: active fan config=default (unlisted board), 8 fan channels, MSI fan brute force disabled, fan mask=0x1ff, temp mask=0x7f, board "1046"
+[    3.282878] nct6687: Found NCT6686D or compatible chip at 0x002e:0x0a20
+[    3.283090] nct6687 nct6687.2592: NCT6686D EC firmware version 1.0 build 07/21/23
+hwmon: /sys/class/hwmon/hwmon2 (nct6686)
+
+nct6686-isa-0a20
+Adapter: ISA adapter
++12V:            7.58 V  
++5V:             6.64 V  
++3.3V:           3.33 V  
+CPU Soc:       928.00 mV 
+CPU Vcore:       1.19 V  
+CPU 1P8:         3.39 V  
+CPU VDDP:        1.02 V  
+DRAM:            2.18 V  
+Chipset:         0.00 V  
+CPU SA:          0.00 V  
+Voltage #2:    336.00 mV 
+AVCC3:           1.82 V  
+AVSB:            3.30 V  
+VBat:            1.82 V  
+CPU Fan:       2637 RPM
+Pump Fan:      2758 RPM
+System Fan #1: 2666 RPM
+System Fan #2:    0 RPM
+System Fan #3: 2696 RPM
+System Fan #4: 1230 RPM
+System Fan #5: 1237 RPM
+System Fan #6:    0 RPM
+CPU:            +48.0°C  
+System:          -2.0°C  
+VRM MOS:        +37.5°C  
+PCH:            +39.5°C  
+CPU Socket:     +63.0°C  
+PCIe x1:        +41.0°C  
+M2_1:           +41.5°C  
+
+
+== Write test via hwmon sysfs
+pwm1: enable=1 duty 123 -> 255 | fan1 2637 -> 4347 RPM
+pwm3: enable=1 duty 91 -> 255 | fan3 2531 -> 6557 RPM
+pwm5: enable=1 duty 142 -> 255 | fan5 2474 -> 4054 RPM
+
+== Hold test: pwm3 manual at 255 for 60 s (does firmware take it back?)
+t=15s enable=1 duty=255 fan3=6451 RPM
+t=30s enable=1 duty=255 fan3=6557 RPM
+t=45s enable=1 duty=255 fan3=6557 RPM
+t=60s enable=1 duty=255 fan3=6486 RPM
+DONE
+[restore] all tested channels back to auto (pwm_enable=2)

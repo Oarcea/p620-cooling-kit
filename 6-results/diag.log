@@ -1,0 +1,395 @@
+
+=================== BIOS fan settings (think_lmi) ===================
+FanControlStepping = 7 - Higher Fan Speed | possible: 1 - Lower Fan Speed;2;3;4;5;6;7 - Higher Fan Speed
+QuadM2PCIeCardFanControl = Low Speed | possible: Low Speed;Medium Speed;High Speed
+pending_reboot = 
+Admin
+HDD
+NVMe
+Power-on
+System
+/sys/class/firmware-attributes/thinklmi/authentication/Admin/is_enabled: 0
+/sys/class/firmware-attributes/thinklmi/authentication/HDD/is_enabled: 0
+/sys/class/firmware-attributes/thinklmi/authentication/NVMe/is_enabled: 0
+/sys/class/firmware-attributes/thinklmi/authentication/Power-on/is_enabled: 0
+/sys/class/firmware-attributes/thinklmi/authentication/System/is_enabled: 0
+
+=================== DMI (bios, board, cooling devices type 27, temp probes type 28, OEM 11) ===================
+# dmidecode 3.5
+Getting SMBIOS data from sysfs.
+SMBIOS 3.3.0 present.
+
+Handle 0x0000, DMI type 0, 26 bytes
+BIOS Information
+	Vendor: LENOVO
+	Version: S07KT0EA
+	Release Date: 11/13/2020
+	Address: 0xF0000
+	Runtime Size: 64 kB
+	ROM Size: 32 MB
+	Characteristics:
+		PCI is supported
+		BIOS is upgradeable
+		BIOS shadowing is allowed
+		Boot from CD is supported
+		Selectable boot is supported
+		BIOS ROM is socketed
+		EDD is supported
+		5.25"/1.2 MB floppy services are supported (int 13h)
+		3.5"/720 kB floppy services are supported (int 13h)
+		3.5"/2.88 MB floppy services are supported (int 13h)
+		Print screen service is supported (int 5h)
+		8042 keyboard services are supported (int 9h)
+		Serial services are supported (int 14h)
+		Printer services are supported (int 17h)
+		ACPI is supported
+		USB legacy is supported
+		BIOS boot specification is supported
+		Targeted content distribution is supported
+		UEFI is supported
+	BIOS Revision: 1.14
+	Firmware Revision: 1.20
+
+Handle 0x0002, DMI type 2, 15 bytes
+Base Board Information
+	Manufacturer: LENOVO
+	Product Name: 1046
+	Version: SDK0T08861 WIN 3305364536511
+	Serial Number:                     
+	Asset Tag:                          
+	Features:
+		Board is a hosting board
+		Board is removable
+		Board is replaceable
+	Location In Chassis: Default string
+	Chassis Handle: 0x0003
+	Type: Motherboard
+	Contained Object Handles: 0
+
+Handle 0x0005, DMI type 11, 5 bytes
+OEM Strings
+	String 1: LENOVO ThinkStation Embedded Controller -[S07ES14A-1.14]-
+	String 2: Lenovo ThinkStation BIOS Boot Block Revision 1.0E
+	String 3: INVALID
+	String 4: INVALID
+	String 5: INVALID
+	String 6: INVALID
+	String 7: INVALID
+	String 8: INVALID
+	String 9: INVALID
+	String 10: Country - ??
+	String 11: INVALID
+	String 12: INVALID
+	String 13: INVALID
+	String 14: INVALID
+	String 15: INVALID
+
+Handle 0x000F, DMI type 28, 22 bytes
+Temperature Probe
+	Description: CPU_Sensor
+	Location: Processor
+	Status: OK
+	Maximum Value: Unknown
+	Minimum Value: Unknown
+	Resolution: Unknown
+	Tolerance: Unknown
+	Accuracy: Unknown
+	OEM-specific Information: 0x00000000
+	Nominal Value: Unknown
+
+Handle 0x0010, DMI type 28, 22 bytes
+Temperature Probe
+	Description: CPU_VR_Sensor
+	Location: Processor
+	Status: OK
+	Maximum Value: Unknown
+	Minimum Value: Unknown
+	Resolution: Unknown
+	Tolerance: Unknown
+	Accuracy: Unknown
+	OEM-specific Information: 0x00000000
+	Nominal Value: Unknown
+
+Handle 0x0011, DMI type 28, 22 bytes
+Temperature Probe
+	Description: Ambient
+	Location: Motherboard
+	Status: OK
+	Maximum Value: Unknown
+	Minimum Value: Unknown
+	Resolution: Unknown
+	Tolerance: Unknown
+	Accuracy: Unknown
+	OEM-specific Information: 0x00000000
+	Nominal Value: Unknown
+
+Handle 0x0012, DMI type 28, 22 bytes
+Temperature Probe
+	Description: IO Hub
+	Location: Motherboard
+	Status: OK
+	Maximum Value: Unknown
+	Minimum Value: Unknown
+	Resolution: Unknown
+	Tolerance: Unknown
+	Accuracy: Unknown
+	OEM-specific Information: 0x00000000
+	Nominal Value: Unknown
+
+Handle 0x0013, DMI type 28, 22 bytes
+Temperature Probe
+	Description: PCIE_ZONE1_SENSOR
+	Location: Motherboard
+	Status: OK
+	Maximum Value: Unknown
+	Minimum Value: Unknown
+	Resolution: Unknown
+	Tolerance: Unknown
+	Accuracy: Unknown
+	OEM-specific Information: 0x00000000
+	Nominal Value: Unknown
+
+Handle 0x0014, DMI type 28, 22 bytes
+Temperature Probe
+	Description: PCIE_ZONE2_SENSOR
+	Location: Motherboard
+	Status: OK
+	Maximum Value: Unknown
+	Minimum Value: Unknown
+	Resolution: Unknown
+	Tolerance: Unknown
+	Accuracy: Unknown
+	OEM-specific Information: 0x00000000
+	Nominal Value: Unknown
+
+Handle 0x0015, DMI type 28, 22 bytes
+Temperature Probe
+	Description: PCIE_ZONE3_SENSOR
+	Location: Motherboard
+	Status: OK
+	Maximum Value: Unknown
+	Minimum Value: Unknown
+	Resolution: Unknown
+	Tolerance: Unknown
+	Accuracy: Unknown
+	OEM-specific Information: 0x00000000
+	Nominal Value: Unknown
+
+Handle 0x0016, DMI type 28, 22 bytes
+Temperature Probe
+	Description: M2_Sensor
+	Location: Motherboard
+	Status: OK
+	Maximum Value: Unknown
+	Minimum Value: Unknown
+	Resolution: Unknown
+	Tolerance: Unknown
+	Accuracy: Unknown
+	OEM-specific Information: 0x00000000
+	Nominal Value: Unknown
+
+Handle 0x0017, DMI type 28, 22 bytes
+Temperature Probe
+	Description: PSU_Sensor
+	Location: Power Unit
+	Status: OK
+	Maximum Value: Unknown
+	Minimum Value: Unknown
+	Resolution: Unknown
+	Tolerance: Unknown
+	Accuracy: Unknown
+	OEM-specific Information: 0x00000000
+	Nominal Value: Unknown
+
+Handle 0x0018, DMI type 27, 15 bytes
+Cooling Device
+	Type: Power Supply Fan
+	Status: OK
+	Cooling Unit Group: 1
+	OEM-specific Information: 0x00000000
+	Nominal Speed: Unknown Or Non-rotating
+	Description: Cooling Dev 1
+
+
+=================== Packages ===================
+i2c-tools + acpica-tools OK
+
+=================== Super I/O chip ID (raw ports 0x2e / 0x4e) ===================
+port 0x2e via Nuvoton/Winbond entry: chip ID d441
+   LDN 0x0B (HWM/EC) active=0x1 base=0x0a20
+port 0x4e: no response
+
+=================== sensors-detect (auto) ===================
+  * Bus `SMBus PIIX4 adapter port 1 at 0b20'
+    Busdriver `i2c_piix4', I2C address 0x48
+    Chip `National Semiconductor LM76' (confidence: 2)
+  * Bus `SMBus PIIX4 adapter port 1 at 0b20'
+    Busdriver `i2c_piix4', I2C address 0x49
+    Chip `National Semiconductor LM76' (confidence: 2)
+  * Bus `SMBus PIIX4 adapter port 1 at 0b20'
+    Busdriver `i2c_piix4', I2C address 0x4a
+    Chip `National Semiconductor LM76' (confidence: 2)
+  * Bus `SMBus PIIX4 adapter port 1 at 0b20'
+    Busdriver `i2c_piix4', I2C address 0x4b
+    Chip `National Semiconductor LM76' (confidence: 2)
+  * Bus `SMBus PIIX4 adapter port 1 at 0b20'
+    Busdriver `i2c_piix4', I2C address 0x4c
+    Chip `Maxim MAX6633/MAX6634/MAX6635' (confidence: 2)
+  * Bus `SMBus PIIX4 adapter port 1 at 0b20'
+    Busdriver `i2c_piix4', I2C address 0x4d
+    Chip `Maxim MAX6633/MAX6634/MAX6635' (confidence: 2)
+  * Bus `SMBus PIIX4 adapter port 1 at 0b20'
+    Busdriver `i2c_piix4', I2C address 0x4e
+    Chip `Maxim MAX6633/MAX6634/MAX6635' (confidence: 2)
+  * Bus `SMBus PIIX4 adapter port 1 at 0b20'
+    Busdriver `i2c_piix4', I2C address 0x4f
+    Chip `Maxim MAX6633/MAX6634/MAX6635' (confidence: 2)
+
+Driver `k10temp' (autoloaded):
+  * Chip `AMD Family 17h thermal sensors' (confidence: 9)
+
+To load everything that is needed, add this to /etc/modules:
+#----cut here----
+# Chip drivers
+lm92
+#----cut here----
+If you have some drivers built into your kernel, the list above will
+contain too many modules. Skip the appropriate ones!
+
+Do you want to add these lines automatically to /etc/modules? (yes/NO)
+
+Unloading cpuid... OK
+
+
+=================== Try in-kernel drivers ===================
+nct6683: 1 loaded
+modprobe: ERROR: could not insert 'nct6775': No such device
+nct6775: 0 loaded
+modprobe: ERROR: could not insert 'it87': No such device
+it87: 0 loaded
+[    2.152309] nvme nvme0: pci function 0000:21:00.0
+[    2.678827] xor: automatically using best checksumming function   avx       
+[  638.233171] nct6683: Found NCT6686D or compatible chip at 0x2e:0xa20
+[  638.233190] ACPI Warning: SystemIO range 0x0000000000000A24-0x0000000000000A27 conflicts with OpRegion 0x0000000000000A20-0x0000000000000A27 (\_SB.PCI0.SBRG.ECS1) (20251212/utaddress-204)
+[  638.233199] ACPI: OSL: Resource conflict; ACPI support missing from driver?
+
+=================== SMBus scan (PIIX4 buses only) ===================
+--- i2c-0
+     0  1  2  3  4  5  6  7  8  9  a  b  c  d  e  f
+00:                         -- -- -- -- -- -- -- -- 
+10: -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- 
+20: -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- 
+30: -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- 
+40: -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- 
+50: -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- 
+60: -- -- -- -- -- -- -- -- -- -- -- 6b -- -- -- -- 
+70: -- 71 -- -- -- -- -- --                         
+--- i2c-1
+     0  1  2  3  4  5  6  7  8  9  a  b  c  d  e  f
+00:                         -- -- -- -- -- -- -- -- 
+10: -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- 
+20: -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- 
+30: -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- 
+40: -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- 
+50: -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- 
+60: -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- 
+70: -- -- -- -- -- -- -- --                         
+--- i2c-2
+     0  1  2  3  4  5  6  7  8  9  a  b  c  d  e  f
+00:                         08 09 0a 0b 0c 0d 0e 0f 
+10: 10 11 12 13 14 15 16 17 18 19 1a 1b 1c 1d 1e 1f 
+20: 20 21 22 23 24 25 26 27 28 29 2a 2b 2c 2d 2e 2f 
+30: 30 31 32 33 34 35 UU UU 38 39 3a 3b 3c 3d 3e 3f 
+40: 40 41 42 43 44 45 46 47 48 49 4a 4b 4c 4d 4e 4f 
+50: UU UU UU UU UU UU 56 57 58 59 5a 5b 5c 5d 5e 5f 
+60: 60 61 62 63 64 65 66 67 68 69 6a 6b 6c 6d 6e 6f 
+70: 70 71 72 73 74 75 76 77                         
+
+=================== ACPI tables: fan/thermal objects ===================
+dsdt.dsl:51:    Name (IO3B, 0x0A20)
+dsdt.dsl:10189:                Device (SIO1)
+dsdt.dsl:10224:                            CreateWordField (CRS, \_SB.PCI0.SBRG.SIO1._Y29._MIN, GPI0)  // _MIN: Minimum Base Address
+dsdt.dsl:10225:                            CreateWordField (CRS, \_SB.PCI0.SBRG.SIO1._Y29._MAX, GPI1)  // _MAX: Maximum Base Address
+dsdt.dsl:10226:                            CreateByteField (CRS, \_SB.PCI0.SBRG.SIO1._Y29._LEN, GPIL)  // _LEN: Length
+dsdt.dsl:10234:                            CreateWordField (CRS, \_SB.PCI0.SBRG.SIO1._Y2A._MIN, GP10)  // _MIN: Minimum Base Address
+dsdt.dsl:10235:                            CreateWordField (CRS, \_SB.PCI0.SBRG.SIO1._Y2A._MAX, GP11)  // _MAX: Maximum Base Address
+dsdt.dsl:10236:                            CreateByteField (CRS, \_SB.PCI0.SBRG.SIO1._Y2A._LEN, GPL1)  // _LEN: Length
+dsdt.dsl:10244:                            CreateWordField (CRS, \_SB.PCI0.SBRG.SIO1._Y2B._MIN, GP20)  // _MIN: Minimum Base Address
+dsdt.dsl:10245:                            CreateWordField (CRS, \_SB.PCI0.SBRG.SIO1._Y2B._MAX, GP21)  // _MAX: Maximum Base Address
+dsdt.dsl:10246:                            CreateByteField (CRS, \_SB.PCI0.SBRG.SIO1._Y2B._LEN, GPL2)  // _LEN: Length
+dsdt.dsl:10254:                            CreateWordField (CRS, \_SB.PCI0.SBRG.SIO1._Y2C._MIN, GP30)  // _MIN: Minimum Base Address
+dsdt.dsl:10255:                            CreateWordField (CRS, \_SB.PCI0.SBRG.SIO1._Y2C._MAX, GP31)  // _MAX: Maximum Base Address
+dsdt.dsl:10256:                            CreateByteField (CRS, \_SB.PCI0.SBRG.SIO1._Y2C._LEN, GPL3)  // _LEN: Length
+dsdt.dsl:10262:                        Return (CRS) /* \_SB_.PCI0.SBRG.SIO1.CRS_ */
+dsdt.dsl:10398:                        Local0 = ACTR /* \_SB_.PCI0.SBRG.SIO1.ACTR */
+dsdt.dsl:10435:                        Local0 = ACTR /* \_SB_.PCI0.SBRG.SIO1.ACTR */
+dsdt.dsl:10497:                    CreateWordField (CRS1, \_SB.PCI0.SBRG.SIO1._Y2D._INT, IRQM)  // _INT: Interrupts
+dsdt.dsl:10498:                    CreateByteField (CRS1, \_SB.PCI0.SBRG.SIO1._Y2E._DMA, DMAM)  // _DMA: Direct Memory Access
+dsdt.dsl:10499:                    CreateWordField (CRS1, \_SB.PCI0.SBRG.SIO1._Y2F._MIN, IO11)  // _MIN: Minimum Base Address
+dsdt.dsl:10500:                    CreateWordField (CRS1, \_SB.PCI0.SBRG.SIO1._Y2F._MAX, IO12)  // _MAX: Maximum Base Address
+dsdt.dsl:10501:                    CreateByteField (CRS1, \_SB.PCI0.SBRG.SIO1._Y2F._LEN, LEN1)  // _LEN: Length
+dsdt.dsl:10521:                    CreateWordField (CRS2, \_SB.PCI0.SBRG.SIO1._Y30._INT, IRQE)  // _INT: Interrupts
+dsdt.dsl:10522:                    CreateByteField (CRS2, \_SB.PCI0.SBRG.SIO1._Y31._DMA, DMAE)  // _DMA: Direct Memory Access
+dsdt.dsl:10523:                    CreateWordField (CRS2, \_SB.PCI0.SBRG.SIO1._Y32._MIN, IO21)  // _MIN: Minimum Base Address
+dsdt.dsl:10524:                    CreateWordField (CRS2, \_SB.PCI0.SBRG.SIO1._Y32._MAX, IO22)  // _MAX: Maximum Base Address
+dsdt.dsl:10525:                    CreateByteField (CRS2, \_SB.PCI0.SBRG.SIO1._Y32._LEN, LEN2)  // _LEN: Length
+dsdt.dsl:10526:                    CreateWordField (CRS2, \_SB.PCI0.SBRG.SIO1._Y33._MIN, IO31)  // _MIN: Minimum Base Address
+dsdt.dsl:10527:                    CreateWordField (CRS2, \_SB.PCI0.SBRG.SIO1._Y33._MAX, IO32)  // _MAX: Maximum Base Address
+dsdt.dsl:10528:                    CreateByteField (CRS2, \_SB.PCI0.SBRG.SIO1._Y33._LEN, LEN3)  // _LEN: Length
+dsdt.dsl:10542:                    CreateWordField (CRS3, \_SB.PCI0.SBRG.SIO1._Y34._INT, IRQT)  // _INT: Interrupts
+dsdt.dsl:10543:                    CreateByteField (CRS3, \_SB.PCI0.SBRG.SIO1._Y34._HE, IRQS)  // _HE_: High-Edge
+dsdt.dsl:10544:                    CreateByteField (CRS3, \_SB.PCI0.SBRG.SIO1._Y35._DMA, DMAT)  // _DMA: Direct Memory Access
+dsdt.dsl:10545:                    CreateWordField (CRS3, \_SB.PCI0.SBRG.SIO1._Y36._MIN, IO41)  // _MIN: Minimum Base Address
+dsdt.dsl:10546:                    CreateWordField (CRS3, \_SB.PCI0.SBRG.SIO1._Y36._MAX, IO42)  // _MAX: Maximum Base Address
+dsdt.dsl:10547:                    CreateByteField (CRS3, \_SB.PCI0.SBRG.SIO1._Y36._LEN, LEN4)  // _LEN: Length
+dsdt.dsl:10552:                        IO11 |= IOAL /* \_SB_.PCI0.SBRG.SIO1.IO11 */
+dsdt.dsl:10553:                        IO12 = IO11 /* \_SB_.PCI0.SBRG.SIO1.IO11 */
+dsdt.dsl:10557:                            IRQM = (One << INTR) /* \_SB_.PCI0.SBRG.SIO1.INTR */
+dsdt.dsl:10575:                        Return (CRS1) /* \_SB_.PCI0.SBRG.SIO1.CRS1 */
+dsdt.dsl:10582:                        IO21 |= IOAL /* \_SB_.PCI0.SBRG.SIO1.IO21 */
+dsdt.dsl:10583:                        IO22 = IO21 /* \_SB_.PCI0.SBRG.SIO1.IO21 */
+dsdt.dsl:10586:                        IO31 |= IOL2 /* \_SB_.PCI0.SBRG.SIO1.IO31 */
+dsdt.dsl:10587:                        IO32 = IO31 /* \_SB_.PCI0.SBRG.SIO1.IO31 */
+dsdt.dsl:10591:                            IRQE = (One << INTR) /* \_SB_.PCI0.SBRG.SIO1.INTR */
+dsdt.dsl:10609:                        Return (CRS2) /* \_SB_.PCI0.SBRG.SIO1.CRS2 */
+dsdt.dsl:10616:                        IO41 |= IOAL /* \_SB_.PCI0.SBRG.SIO1.IO41 */
+dsdt.dsl:10617:                        IO42 = IO41 /* \_SB_.PCI0.SBRG.SIO1.IO41 */
+dsdt.dsl:10621:                            IRQT = (One << INTR) /* \_SB_.PCI0.SBRG.SIO1.INTR */
+dsdt.dsl:10639:                        Return (CRS3) /* \_SB_.PCI0.SBRG.SIO1.CRS3 */
+dsdt.dsl:10789:                        PMFG = OPT9 /* \_SB_.PCI0.SBRG.SIO1.OPT9 */
+dsdt.dsl:10833:                        Return (^^SIO1.DSTA (Zero))
+dsdt.dsl:10838:                        ^^SIO1.DCNT (Zero, Zero)
+dsdt.dsl:10843:                        Return (^^SIO1.DCRS (Zero, Zero))
+dsdt.dsl:10848:                        ^^SIO1.DSRS (Arg0, Zero)
+dsdt.dsl:12208:            \_SB.PCI0.SBRG.SIO1.SIOS (Arg0)
+dsdt.dsl:12217:        \_SB.PCI0.SBRG.SIO1.SIOW (Arg0)
+dsdt.dsl:19315:            /* 0958 */  0x70, 0x77, 0x4D, 0x8F, 0x96, 0x29, 0xBE, 0x43,  // pwM..).C
+dsdt.dsl:19432:            \_SB.PCI0.SBRG.SIO2.GPES ()
+dsdt.dsl:19465:        OperationRegion (ECS1, SystemIO, 0x0A20, 0x08)
+dsdt.dsl:19485:        Device (SIO2)
+dsdt.dsl:19492:                    0x0A20,             // Range Minimum
+dsdt.dsl:19493:                    0x0A20,             // Range Maximum
+dsdt.dsl:19501:                CreateByteField (CRS, \_SB.PCI0.SBRG.SIO2._Y44._MIN, IOLA)  // _MIN: Minimum Base Address
+dsdt.dsl:19503:                IOH1 = IOHA /* \_SB_.PCI0.SBRG.SIO2._CRS.IOHA */
+dsdt.dsl:19504:                IOL1 = IOLA /* \_SB_.PCI0.SBRG.SIO2._CRS.IOLA */
+dsdt.dsl:19508:                Return (CRS) /* \_SB_.PCI0.SBRG.SIO2.CRS_ */
+
+=================== ACPI WMI descriptors (BMOF) names ===================
+05901221-D566-11D1-B2F0-00A0C9062910: (null) wmi-bmof
+18869F9A-5D9B-42DF-94C1-15BA25F76905: (null) 
+2651D9FD-911C-4B69-B94E-D0DED5963BD7: (null) 
+51F5230E-9677-46CD-A1CF-C0B23EE34DB7: (null) think-lmi
+6A4B54EF-A5ED-4D33-9455-B0D9B48DF4B3: (null) 
+7430019A-DCE9-4548-BAB0-9FDE0935CAFF: (null) 
+74F1EBB6-927A-4C7D-95DF-698E21E80EB5: (null) 
+7BAE44F8-3853-4D2B-B98B-F840D7AC26B6: (null) 
+7EEF04FF-4328-447C-B5BB-D449925D538D: (null) 
+7FF47003-3B6C-4E5E-A227-E979824A85D1: (null) 
+87A6C151-5DD8-4DFB-B4ED-46856ABFECE7: (null) 
+8ADB159E-1E32-455C-BC93-308A7ED98246: (null) 
+8BAE44F8-3853-4D2B-B98B-F840D7AC26B6: (null) 
+98479A64-33F5-4E33-A707-8E251EBBC3A1: (null) 
+C3A03776-51AC-49AA-AD0F-F2F7D62C3F3C: (null) 
+DFDDEF2C-57D4-48CE-B196-0FB787D90836: (null) 
+
+DONE — log at /home/p620/.config/Claude/scratch-workspaces/0f93318e-2165-4954-8716-9faea65f07a5/1929f1d8-95e6-4157-990a-1275d0ffadf0/scratch-2026-11-16-778b24/p620_diag/diag.log

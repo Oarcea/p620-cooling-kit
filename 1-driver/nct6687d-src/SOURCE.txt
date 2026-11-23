@@ -1,0 +1,5 @@
+Snapshot of https://github.com/Fred78290/nct6687d (GPL-2.0, see LICENSE)
+commit 3e4861052c5d7931e66b6cb6a6484e733ff8a419 (2026-11-15) "Merge pull request #236 from AndKe/asrock-w790-ws-r2"
+Only nct6687.c, Kbuild, Makefile, dkms.conf, LICENSE, README.md are kept.
+Built and verified on Ubuntu 24.04 with kernel 7.0.0-43-generic (2026-11-16).
+If it stops compiling on a newer kernel, replace these files with a fresh clone of the repository.

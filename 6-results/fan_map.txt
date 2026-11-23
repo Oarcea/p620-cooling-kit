@@ -1,0 +1,20 @@
+# P620 fan map — luni 16 noiembrie 2026, 20:38:28 +0200
+pwm1 = CPU1
+pwm2 = Unknown
+pwm3 = PSU
+pwm4 = maybeREAR
+pwm5 = REAR
+pwm6 = DIMM1
+pwm7 = DIMM2
+pwm8 = Unknown
+# retest of pwm channels: 2 4 8 — luni 16 noiembrie 2026, 20:45:02 +0200
+pwm2 = none
+pwm4 = none
+pwm8 = none
+# retest of pwm channels: 2 4 8 — luni 16 noiembrie 2026, 20:55:08 +0200
+pwm2 = <nothing visible>
+pwm4 = FRONT
+pwm8 = <nothing visible>
+# retest of pwm channels: 2 8 — luni 16 noiembrie 2026, 20:59:03 +0200
+pwm2 = <nothing visible>
+pwm8 = FRONT2

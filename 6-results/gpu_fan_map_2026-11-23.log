@@ -1,0 +1,46 @@
+Config: DIMM1/pwm6 -> P100-1 (GPU-5bb70be1-f1d0-4c22-c42f-064d81590f4d) now at PCI 41:00.0, slot 
+        DIMM2/pwm7 -> P100-2 (GPU-0bb243e3-ae6e-e054-68fc-cc5845ded711) now at PCI 42:00.0, slot 
+p620-fans stopped for the test
+
+== warm-up: pwm6=255 pwm7=255
+  t=  5s  P100-1  56°C 119W | P100-2  57°C 125W | fan6 16000 fan7 16216 RPM
+  t= 10s  P100-1  55°C 122W | P100-2  56°C 123W | fan6  8163 fan7 16216 RPM
+  t= 15s  P100-1  54°C 118W | P100-2  55°C 124W | fan6 16216 fan7 16438 RPM
+  t= 20s  P100-1  53°C 119W | P100-2  54°C 119W | fan6 15789 fan7 16216 RPM
+  t= 25s  P100-1  52°C 116W | P100-2  54°C 123W | fan6 16216 fan7 16000 RPM
+  t= 30s  P100-1  51°C 118W | P100-2  53°C 126W | fan6 16000 fan7 16000 RPM
+
+== A (DIMM1 full, DIMM2 floor): pwm6=255 pwm7=0
+  t=  5s  P100-1  51°C 120W | P100-2  54°C 123W | fan6 16000 fan7  1405 RPM
+  t= 10s  P100-1  50°C 117W | P100-2  56°C 125W | fan6 16216 fan7  1435 RPM
+  t= 15s  P100-1  50°C 119W | P100-2  57°C 121W | fan6 16438 fan7  1368 RPM
+  t= 20s  P100-1  49°C 116W | P100-2  59°C 127W | fan6  8108 fan7  1385 RPM
+  t= 25s  P100-1  49°C 118W | P100-2  61°C 124W | fan6 16216 fan7  1366 RPM
+  t= 30s  P100-1  48°C 118W | P100-2  62°C 127W | fan6 16216 fan7  1379 RPM
+  t= 35s  P100-1  48°C 117W | P100-2  64°C 131W | fan6  8108 fan7  1408 RPM
+  t= 40s  P100-1  47°C 119W | P100-2  66°C 128W | fan6 16000 fan7  1376 RPM
+  t= 45s  P100-1  47°C 115W | P100-2  67°C 130W | fan6 16438 fan7  1368 RPM
+  t= 50s  P100-1  47°C 119W | P100-2  69°C 131W | fan6 16000 fan7  1377 RPM
+  t= 55s  P100-1  47°C 113W | P100-2  70°C 133W | fan6 16000 fan7  1362 RPM
+  t= 60s  P100-1  47°C 116W | P100-2  72°C 137W | fan6 16216 fan7  1366 RPM
+
+== B (DIMM1 floor, DIMM2 full): pwm6=0 pwm7=255
+  t=  5s  P100-1  47°C 119W | P100-2  71°C 134W | fan6  1349 fan7  8053 RPM
+  t= 10s  P100-1  49°C 116W | P100-2  68°C 133W | fan6  1418 fan7 16438 RPM
+  t= 15s  P100-1  51°C 118W | P100-2  65°C 130W | fan6  1330 fan7  8108 RPM
+  t= 20s  P100-1  52°C 114W | P100-2  63°C 130W | fan6  1392 fan7 16216 RPM
+  t= 25s  P100-1  54°C 119W | P100-2  61°C 125W | fan6  1334 fan7 16216 RPM
+  t= 30s  P100-1  55°C 123W | P100-2  60°C 125W | fan6  1418 fan7 16216 RPM
+  t= 35s  P100-1  57°C 120W | P100-2  58°C 128W | fan6  1403 fan7 16000 RPM
+  t= 40s  P100-1  58°C 123W | P100-2  57°C 124W | fan6  1333 fan7 16438 RPM
+  t= 45s  P100-1  60°C 119W | P100-2  56°C 125W | fan6  1420 fan7 16216 RPM
+  t= 50s  P100-1  61°C 121W | P100-2  55°C 122W | fan6  1334 fan7 16216 RPM
+  t= 55s  P100-1  62°C 124W | P100-2  55°C 123W | fan6  1359 fan7 16438 RPM
+  t= 60s  P100-1  64°C 122W | P100-2  54°C 126W | fan6  1363 fan7 16438 RPM
+
+== Result
+P100-1: A 47°C  B 64°C   (B - A = 17)
+P100-2: A 72°C  B 54°C   (B - A = -18)
+MAPPING OK: DIMM1 (pwm6) cools P100-1, DIMM2 (pwm7) cools P100-2 — matches /etc/p620-fans.conf ✔
+[cooldown] load stopped, both fans 100% for 30 s
+[restore] p620-fans restarted

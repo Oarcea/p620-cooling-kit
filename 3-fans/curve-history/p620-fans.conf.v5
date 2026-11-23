@@ -1,0 +1,61 @@
+# /etc/p620-fans.conf — fan curves for the ThinkStation P620 (nct6686 headers).
+# Edit, then: sudo systemctl restart p620-fans
+#
+# Each [fan:NAME] drives one PWM header from one or more temperature inputs; the highest duty wins.
+#   gpu_curve + gpu_uuids  : follows the hottest of the listed GPUs (nvidia-smi)
+#   cpu_curve              : follows CPU Tctl (k10temp)
+# curve = "temp°C:duty%" points, linearly interpolated, flat beyond the ends.
+# min_duty : never go below this duty (%).
+# Limits: P100 slowdown 82 °C / shutdown 85 °C; Threadripper PRO 3975WX Tjmax 95 °C.
+
+# v5 (2026-11-17): quieter idle — low ends lowered, top ends (full load) unchanged.
+[general]
+interval = 2
+# max duty decrease per update (%); increases are immediate
+step_down = 3
+# ignore temperature drops smaller than this (°C)
+hysteresis = 2
+# fan -> 100% when an input reaches these
+gpu_emergency_temp = 76
+cpu_emergency_temp = 90
+hwmon_name = nct6686
+# CPU Tctl is averaged over this many readings (interval x N seconds) to ignore 1-second spikes
+cpu_smoothing = 3
+# on service stop: "safe" (100% if hot, else 50%) or "auto" (hand back to firmware)
+on_stop = safe
+
+# ---- GPU shroud fans (unchanged from p620-gpu-fans) ----
+# DIMM1 header — 40 mm fan(s) on P100-1 (GPU 0, top card)
+[fan:P100-1]
+pwm = 6
+gpu_uuids = GPU-5bb70be1-f1d0-4c22-c42f-064d81590f4d
+gpu_curve = 50:0 58:20 64:50 69:80 73:100
+
+# DIMM2 header — 40 mm fan(s) on P100-2 (GPU 1, bottom card, runs ~8 °C hotter)
+[fan:P100-2]
+pwm = 7
+gpu_uuids = GPU-0bb243e3-ae6e-e054-68fc-cc5845ded711
+gpu_curve = 50:0 56:20 62:50 67:80 71:100
+
+# ---- CPU cooler (both fans on pwm1; ~1,800 RPM at 25%, ~4,400 RPM at 100%) ----
+# Firmware baseline under 266 W: 48% at 66–79 °C and still rising.
+# v1 (45:20 60:35 70:55 78:80 85:100) held 75 °C at 72% under 266 W — user wants it cooler.
+[fan:CPU]
+pwm = 1
+min_duty = 20
+cpu_curve = 45:20 55:30 62:55 67:85 72:100
+
+# ---- Rear exhaust (pwm5; ~2,300 RPM at 25%, ~4,000 RPM at 100%) ----
+# Follows the CPU only (the P100s have their own shroud fans; case airflow doesn't help them).
+[fan:Rear]
+pwm = 5
+min_duty = 25
+cpu_curve = 45:25 55:35 62:60 67:90 72:100
+
+# ---- Front-panel fan header (pwm4 / fan4; verified controllable 2026-11-16) ----
+# Intake for the CPU cooler: follows the CPU only, same curve as the rear exhaust.
+# With nothing plugged in, this only sets the duty of an empty header — harmless.
+[fan:Front]
+pwm = 4
+min_duty = 25
+cpu_curve = 45:25 55:35 62:60 67:90 72:100

@@ -1,0 +1,7 @@
+{
+    "KPlugin": {
+        "Id": "p620",
+        "Name": "P620 fan-controller CPU temperature"
+    },
+    "providerName": "p620"
+}

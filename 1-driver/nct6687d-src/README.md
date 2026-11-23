@@ -1,0 +1,490 @@
+![https://valid.x86.fr/vsb4yv](https://valid.x86.fr/cache/banner/vsb4yv-6.png)
+![https://valid.x86.fr/20aiek](https://valid.x86.fr/cache/banner/20aiek-6.png)
+# NCT6687D Kernel module
+
+This kernel module permit to recognize the chipset Nuvoton NCT6687-R in lm-sensors package.
+This sensor is present on some B550 motherboard such as MSI or ASUS.
+
+The implementation is minimalist and was done by reverse coding of Windows 10 source code from [LibreHardwareMonitor](https://github.com/LibreHardwareMonitor/LibreHardwareMonitor)
+<br><br>
+
+## Installation
+### via package manager
+#### .deb package
+- Clone this repository
+```shell
+~$ git clone https://github.com/Fred78290/nct6687d
+~$ cd nct6687d
+```
+- Build package
+```shell
+~$ make deb
+```
+- Install package
+```shell
+~$ dpkg -i ../nct6687d-dkms_*.deb
+```
+<br>
+
+#### .rpm package (akmod)
+- Clone this repository
+```shell
+~$ git clone https://github.com/Fred78290/nct6687d
+~$ cd nct6687d
+```
+- Build & install package
+```shell
+~$ make akmod
+```
+<br><br>
+
+### Manual Install
+#### Dependencies:
+- Ubuntu/Debian:
+	 ```apt-get install build-essential linux-headers-$(uname -r) dkms dh-dkms```
+- Fedora/CentOS/RHEL:
+	```yum install make automake gcc gcc-c++ kernel-devel kernel-headers dkms```
+- ArchLinux:
+	 ```pacman -S make automake linux-firmware linux-headers dkms base-devel```
+- openSUSE:
+	 ```zypper in git make gcc dkms```
+<br>
+
+#### Build with DKMS
+```shell
+~$ git clone https://github.com/Fred78290/nct6687d
+~$ cd nct6687d
+~$ make dkms/install
+```
+<br>
+
+#### Manual build
+```shell
+~$ git clone (this-repo)
+~$ cd nct6687d
+~$ sudo make install
+```
+
+To remove a manual installation:
+
+```shell
+~$ sudo make uninstall
+```
+<br>
+
+## Sensors
+
+By running the command sensors, you got this output
+
+```
+nct6687-isa-0a20
+Adapter: ISA adapter
++12V:           12.17 V
++5V:             5.14 V
++3.3V:           3.38 V
+CPU Soc:         1.11 V
+CPU Vcore:       1.05 V
+CPU 1P8:         1.84 V
+CPU VDDP:        0.00 V
+DRAM:            1.34 V
+Chipset:       890.00 mV
+CPU Fan:       1192 RPM
+Pump Fan:      1538 RPM
+System Fan #1:  922 RPM
+System Fan #2:  953 RPM
+System Fan #3: 1393 RPM
+System Fan #4:    0 RPM
+System Fan #5: 1007 RPM
+System Fan #6:    0 RPM
+CPU:            +59.0°C
+System:         +34.0°C
+VRM MOS:        +31.0°C
+PCH:            +40.0°C
+CPU Socket:     +33.0°C
+PCIe x1:        +32.0°C
+M2_1:            +0.0°C
+```
+
+<br>
+
+## Load(prob) Sensors on boot
+
+To make it loaded after system boots
+
+Just add nct6687 into /etc/modules
+
+`sudo sh -c 'echo "nct6687" >> /etc/modules'`
+
+### Arch-Linux with systemd
+
+[See entry in the Arch Wiki](https://wiki.archlinux.org/title/Lm_sensors#MSI_MAG_B650_/_Z890_TOMAHAWK_WIFI_(MS-7D75/MS-7E32)_/_MAG_B550_MORTAR_WIFI_(MS-7C94))
+
+
+`sudo sh -c 'echo "nct6687" >> /etc/modules-load.d/nct6687.conf'`
+
+<br>
+
+## Gnome sensors extensions
+
+![Fan](./images/fan.png) ![Voltage](./images/voltage.png)
+
+<br>
+
+## Tested
+
+This module was tested on Ubuntu 20.04 with all kernel available on motherboard [MAG-B550-TOMAHAWK](https://www.msi.com//Motherboard/MAG-B550-TOMAHAWK) running an [AMD 3900X/AMD 5900X](https://www.amd.com/en/products/cpu/amd-ryzen-9-3900x), and on RL8(RHEL8) [MAG-B550M-MORTAR](https://www.msi.com/Motherboard/MAG-B550M-MORTAR) running an [AMD 5700G](https://www.amd.com/en/products/apu/amd-ryzen-7-5700g)
+
+<br>
+
+## Other motherboard supported
+- Many people have reported compatibility with MB having Intel H410M & H510M chipset from some manufacturer. See [issue](https://github.com/Fred78290/nct6687d/issues) report.
+<br>
+
+## ASRock W790 WS R2.0 (NCT6686D)
+
+Works with the unmodified driver, no `force=1` needed. Tested on Ubuntu 26.10,
+kernel 7.3.0-10. The board's NCT6686D (`0x2e:0xa20`, EC firmware 1.0 build
+08/29/22) registers as `nct6686-isa-0a20`.
+
+- Fan RPM, temperatures and `pwm[1-8]` / `pwm[1-8]_enable` are exposed.
+- Most voltages read 0.00 V (including +12V and +5V) with the default voltage
+  map, so do not trust voltage readings on this board.
+- The default fan labels are the MSI ones. [sensors.d/ASRock_W790_WS_R2.conf](./sensors.d/ASRock_W790_WS_R2.conf)
+  relabels the channels with the board's header names.
+- The in-kernel `nct6683` driver only binds to this board with `force=1`
+  (customer ID `0x162c`). If it is loaded, remove it first, see
+  [Conflict with the in-kernel `nct6683` driver](#conflict-with-the-in-kernel-nct6683-driver).
+- With Secure Boot enabled, see [Secure Boot](#secure-boot-loading-of-module-with-unavailable-key-is-rejected).
+<br>
+
+## CHANGELOG
+
+- Add support for MSI B460M Bazooka having NCT6687 with another device ID
+- Add support to use generic voltage input without multiplier, allows sensors custom conf
+- Support giving fan control back to the firmware
+<br>
+
+## VOLTAGE MANUAL CONFIGURATION
+
+Some people report that voltage are wrong. The reason is with some motherboard, voltage sensors are not connected on the same nct6687 register.
+
+As example the **VCore** sensor is connected on the **5th** register for AMD but is connected on the **3rd** register for INTEL.
+<br>
+Also the **DIMM** sensor is connected on the **4th** register for AMD but connected to **5th** register for INTEL.
+
+To allow customize voltage configuration you must add **manual=1** parameter passed to the module at load
+
+`sudo sh -c 'echo "nct6687 manual=1" >> /etc/modules'`
+
+And use a sensors conf like this **/etc/sensors.d/B460M-7C83.conf**
+
+```
+# Micro-Star International Co., Ltd.
+# MAG B460M BAZOOKA (MS-7C83)
+
+chip "nct6687-*"
+    label in0         "+12V"
+    label in1         "+5V"
+    label in2         "VCore"
+    label in3         "Voltage #1"
+    label in4         "DIMM"
+    label in5         "CPU I/O"
+    label in6         "CPU SA"
+    label in7         "Voltage #2"
+    label in8         "+3.3V"
+    label in9         "VTT"
+    label in10        "VRef"
+    label in11        "VSB"
+    label in12        "AVSB"
+    label in13        "VBat"
+
+    ignore in3
+    ignore in7
+    ignore in9
+    ignore in10
+    ignore in13
+
+    ignore temp6
+    ignore temp7
+
+    compute in0       (@ * 12), (@ / 12)
+    compute in1       (@ * 5), (@ / 5)
+    compute in4       (@ * 2), (@ / 2)
+```
+
+## MODULE PARAMETERS
+
+- **force** (bool) (default: false)
+  Set to enable support for unknown vendors.
+
+- **manual** (bool) (default: false)
+  Set voltage input and voltage label configured with external sensors file.
+  You can use custom labels and ignore inputs without setting this option if
+  you can figure out their names (see which `*_label` contains builtin label).
+
+- **fan_config** (`auto`, `default`, `msi_alt1`) (default: `auto`) Changes fan configuration 
+  for RPM & PWM registers for motherboards with alternative chip configurations.
+  
+  Motherboards which need this will show CPU/Pump RPMs but no data on System fans.
+
+  `auto` selects `msi_alt1` for the supported MSI motherboards listed below and `default` for every other board. An explicit `default` or `msi_alt1` is always used as given, also on a listed board. After loading, `/sys/module/nct6687/parameters/fan_config` reads the configuration in use.
+
+- **msi_fan_brute_force** (bool) (default: false) **[BETA]**
+  For MSI motherboards with `msi_alt1` configuration: When enabled, writes PWM values to all 7 fan 
+  curve control points. This may help with fan control on some MSI boards where standard PWM writes 
+  don't take effect immediately. Only affects system fans controlled by the BIOS. Not the CPU fan or pump fan. 
+
+  Before entering manual control, the driver saves all 7 original curve points. The saved curve is restored like every other saved fan state (see [Fan-control watchdog](#fan-control-watchdog)).
+  
+  This implementation is based on register mappings from [LibreHardwareMonitor](https://github.com/LibreHardwareMonitor/LibreHardwareMonitor).
+  
+  Usage: `modprobe nct6687 msi_fan_brute_force=1`
+
+  Note: This option requires blacklisting the `nct6683` module to prevent it from loading instead of `nct6687`. See the [Issues](#issues) section for detailed instructions.
+
+- **fan_mask** (uint) (default: all channels, `0x1ff`)
+  Bitmask of the fan/pwm channels to expose. Bit 0 controls `fan1`/`pwm1`, bit 1
+  controls `fan2`/`pwm2`, and so on up to bit 7 for `fan8`/`pwm8`, and bit 8 for
+  the tachometer-only `fan9` (second pump header). Both the
+  tachometer and PWM attributes of a channel are covered by the same bit, since
+  `fanN_input` and `pwmN` are the same physical header. Channels the board does
+  not have stay hidden whatever the mask: `fan9` exists only with `msi_alt1` on
+  the MEG Z890 GODLIKE.
+
+  Useful on boards with fewer than 8 headers, where the unused channels report a
+  constant 0 RPM.
+
+- **temp_mask** (uint) (default: all channels, `0x7f`)
+  Bitmask of the temperature channels to expose. Bit 0 controls `temp1`, up to
+  bit 6 for `temp7`. Useful for hiding channels the board does not populate.
+
+  Both masks accept decimal or `0x` hex. Masked channels are not read from the EC
+  at all, and channel numbering is never renumbered to fill gaps: masking off
+  bit 1 leaves `fan1` and `fan3`–`fan8` with no `fan2`, so existing `sensors.d`
+  and `fancontrol` configuration keeps referring to the same hardware.
+
+  Examples:
+
+  ```
+  # fan1-fan6 and pwm1-pwm6 only, fan7/fan8/pwm7/pwm8 hidden
+  # temp1-temp4 only, temp5/temp6/temp7 hidden
+      options nct6687 fan_mask=0x3f temp_mask=0x0f
+  ```
+
+<details>
+  <summary>Supported MSI boards for ("msi_alt1" and "msi_fan_brute_force")</summary>
+
+  | Board | DMI |
+  | --- | ---: |
+  | PRO B840-P WIFI | MS-7E57 |
+  | B840M GAMING PLUS WIFI6E | MS-7E77 |
+  | B850 GAMING PLUS WIFI | MS-7E56 |
+  | B850 GAMING PLUS WIFI6E | MS-7E80 |
+  | B850M GAMING PLUS WIFI6E | MS-7E81 |
+  | PRO B850-P WIFI | MS-7E56 |
+  | PRO B850M-A WIFI | MS-7E66 |
+  | PRO B850M-P WIFI | MS-7E71 |
+  | MAG B850M MORTAR WIFI | MS-7E61 |
+  | MAG B850 TOMAHAWK MAX WIFI | MS-7E62 |
+  | MPG B850 EDGE TI WIFI | MS-7E62 |
+  | MPG B850I EDGE TI WIFI | MS-7E79 |
+  | B850MPOWER | MS-7E83 |
+  | PRO B850-S WIFI6E | MS-7E80 |
+  | X870 GAMING PLUS WIFI | MS-7E47 |
+  | X870E GAMING PLUS WIFI | MS-7E70 |
+  | MAG X870 TOMAHAWK WIFI | MS-7E51 |
+  | PRO X870-P WIFI | MS-7E47 |
+  | PRO X870E-P WIFI | MS-7E70 |
+  | MAG X870E TOMAHAWK WIFI | MS-7E59 |
+  | MAG X870E TOMAHAWK MAX WIFI PZ | MS-7E84 |
+  | MPG X870E CARBON WIFI | MS-7E49 |
+  | MPG X870E EDGE TI WIFI | MS-7E59 |
+  | MEG X870E GODLIKE | MS-7E48 |
+  | MEG Z890 ACE | MS-7E22 |
+  | MEG Z890M ACE | MS-7E23 |
+  | MPG Z890 CARBON WIFI | MS-7E17 |
+  | MPG Z890M CARBON WIFI | MS-7E18 |
+  | MPG Z890 EDGE TI WIFI | MS-7E19 |
+  | MPG Z890I EDGE TI WIFI | MS-7E33 |
+  | Z890 GAMING PLUS WIFI | MS-7E34 |
+  | MAG Z890 TOMAHAWK WIFI | MS-7E32 |
+  | PRO Z890-A WIFI | MS-7E32 |
+  | PRO Z890-P WIFI | MS-7E34 |
+  | PRO Z890-S WIFI | MS-7E54 |
+</details>
+
+## CONFIGURATION VIA SYSFS
+
+In order to be able to use this interface you need to know the path as which
+it's published. The path isn't fixed and depends on the order in which chips are
+registered by the kernel. One way to find it is by device class (`hwmon`) via a
+simple command like this:
+```
+for d in /sys/class/hwmon/*; do echo "$d: $(cat "$d/name")"; done | grep nct6687
+```
+
+Possible output:
+```
+/sys/class/hwmon/hwmon5: nct6687
+```
+
+This means that your base path for examples below is `/sys/class/hwmon/hwmon5`
+(note that adding/removing hardware can change the path, drop `grep` from the
+command above to see all sensors and their relative ordering).
+
+Another way to look it up is by a device (class path actually just points to
+device path) like in:
+
+`cd /sys/devices/platform/nct6687.*/hwmon/hwmon*`
+
+The first asterisk will be expanded to an address (`2592` which is `0xa20` that
+you can see in `sensors` output) and the second one to a number like `5` from
+above.
+
+### `pwm[1-8]`
+
+Gets/sets PWM duty cycle or DC value that defines fan speed.  Which unit is used
+depends on what was configured by firmware.
+
+Accepted values: `0`-`255` (slowest to full speed).
+
+Writing to this file changes fan control to manual mode.
+
+Example:
+
+```
+# slow down a fan as much as possible (will stop it if the fan supports zero RPM mode)
+echo 0 > pwm6
+# fix a fan at around half its speed (actual behaviour depends on the fan)
+echo 128 > pwm6
+# full speed
+echo 255 > pwm6
+```
+
+### `pwm[1-8]_enable`
+
+Gets/sets the fan control mode.
+
+Accepted values:
+ * `1` - manual speed management through `pwm[1-8]`
+ * `2` - automatic control using the profile configured by firmware
+
+The legacy value `99` is still accepted when written for compatibility, but
+reading `pwm[1-8]_enable` always reports the standard hwmon value `1` or `2`.
+
+Example:
+
+```
+# fix a fan at current speed (`echo pwm6` will be constant from now on)
+echo 1 > pwm6_enable
+# switch back to automatic control set up by firmware (`echo pwm6` is again dynamic after this)
+echo 2 > pwm6_enable
+# switch to ~25% of max speed
+echo 64 > pwm6
+# automatic
+echo 2 > pwm6_enable
+# back to ~25% (it seems to be remembered)
+echo 1 > pwm6_enable
+```
+
+### Fan-control watchdog
+
+Before its first change to a channel, the driver saves the channel's PWM target (all 7 curve points with `msi_fan_brute_force`) and control mode. The saved state is restored when userspace writes automatic mode to `pwmN_enable`, when the driver is unloaded, or when the fan-control watchdog expires.
+
+`fan_control_watchdog` (in the hwmon device folder) holds a manual-control lease. Writing a timeout from 1 to 300 seconds arms or refreshes it. If the lease expires, every channel changed since its last automatic-mode request is restored to its saved state; a channel that fails to restore is retried every second, and the file keeps reading the timeout until every channel is back. Writing `0` disarms the watchdog. A controlling daemon should refresh the lease independently of PWM value changes and disarm it only after returning all channels to automatic control. The lease is paused while the system is suspended and resumes with its remaining time after the device is active again.
+
+## VERIFIED
+**1. Fan speed control**
+
+- Changing fan speed was tested successfully by users, see in [reported issues](https://github.com/Fred78290/nct6687d/issues).
+
+## Issues
+### Loading fails during startup
+`dmesg` / `journalctl` shows 
+```
+kernel: nct6687: EC base I/O port unconfigured
+systemd-modules-load[339]: Failed to insert module 'nct6687': No such device
+```
+* add `softdep nct6687 pre: i2c_i801` to e.g. `/etc/modprobe.d/sensors.conf`.
+
+### Conflict with the in-kernel `nct6683` driver
+The in-kernel `nct6683` driver also binds to the NCT6687 and registers it as `nct6687`, so it is easily mistaken for this driver. Only one of them can be loaded. `sensors-detect` may add `nct6683` to `HWMON_MODULES` (e.g. in `/etc/conf.d/lm_sensors`), which loads it at boot.
+
+To switch to this driver without rebooting:
+```sh
+~$ lsmod | grep nct66                # check which driver is loaded
+~$ sudo rmmod nct6683
+~$ sudo modprobe nct6687             # or: sudo insmod ./nct6687.ko
+```
+Restart any fan control software afterwards, as the hwmon device is re-created.
+
+To make this permanent, blacklist `nct6683` and remove it from `HWMON_MODULES`:
+```sh
+~$ echo "blacklist nct6683" | sudo tee /etc/modprobe.d/nct6683_blacklist.conf
+```
+A blacklist only stops automatic loading; an explicit `modprobe nct6683` (as done for `HWMON_MODULES`) still loads it. Use `install nct6683 /bin/false` instead of `blacklist nct6683` to block that too.
+
+### Secure Boot: `Loading of module with unavailable key is rejected`
+With Secure Boot enabled the kernel only loads modules signed by a key enrolled
+in the firmware. DKMS signs the module with a machine owner key (MOK), on
+Ubuntu `/var/lib/shim-signed/mok/MOK.der`. If that key was never enrolled,
+`modprobe nct6687` fails and `dmesg` shows the message above.
+
+```sh
+~$ mokutil --sb-state                                       # SecureBoot enabled?
+~$ sudo mokutil --test-key /var/lib/shim-signed/mok/MOK.der # "is already enrolled" means this is not the problem
+~$ sudo mokutil --import /var/lib/shim-signed/mok/MOK.der   # choose a one-time password
+```
+Reboot, press a key on the blue "Perform MOK management" screen, choose
+*Enroll MOK* -> *Continue* -> *Yes* and enter the password. After the next boot
+the module loads; it does not need to be rebuilt.
+
+### Loading `msi_fan_brute_force` parameter fails
+- Symptom: No RPM value is displayed for some fans in the sensor data; or the following behavior is observed: the fan stops at 60%
+- Solution steps:
+  1. Prevent the wrong driver from loading:
+     ```sh
+     echo "blacklist nct6683" | sudo tee /etc/modprobe.d/nct6683_blacklist.conf
+     ```
+  2. Set module option to enable brute-force fan curve writes for MSI boards:
+     ```sh
+     echo "options nct6687 msi_fan_brute_force=1" | sudo tee /etc/modprobe.d/nct6687_msi.conf
+     ```
+  3. Ensure the `nct6687` module is loaded at boot:
+     ```sh
+     echo "nct6687" | sudo tee /etc/modules-load.d/nct6687.conf
+     ```
+  4. Reboot and verify the module loads correctly.   
+   
+
+- After installation:
+  Check `/etc/conf.d/lm-sensors.conf` (or your distro's equivalent) that `HWMON_MODULES` not includes `nct6683` (e.g., `HWMON_MODULES="coretemp nct6683 ..."`) to ensure the correct driver is loaded at boot.
+
+### Only CPU & Pump show RPM values
+On MSI motherboards, `msi_alt1` configuration is automatically detected and enabled.
+You can verify this in `dmesg` after loading the module:
+```
+nct6687: active fan config=msi_alt1 (listed MSI board), 8 fan channels, MSI fan brute force disabled, fan mask=0x1ff, temp mask=0x7f, board "PRO X870E-P WIFI (MS-7E70)"
+```
+
+This line is always printed. It shows the fan configuration in use, why it was
+chosen (`listed MSI board`, `unlisted board`, or `set by fan_config`), the
+number of fan channels, both masks and the board name. Use it to confirm the
+right mapping is active.
+
+If you have a non-MSI motherboard with this issue, try using module parameter `fan_config=msi_alt1` manually.
+
+> **Warning — do NOT force `fan_config=msi_alt1` on non-listed MSI boards.**
+> Only the NCT6687DR-equipped MSI families (B840/B850/X870/X870E/Z890) are
+> compatible with `msi_alt1`. Earlier MSI series with the plain NCT6687D chip
+> — including **B650/B660/X670/Z690/Z790** — use the *default* register
+> mapping and are auto-detected correctly without any module parameter.
+>
+> If you previously set `options nct6687 fan_config=msi_alt1` in
+> `/etc/modprobe.d/` on one of those boards as a troubleshooting attempt,
+> remove it: forcing `msi_alt1` makes the driver read EC offsets
+> `0x154-0x15E` which are zero on non-DR variants, causing all SYS_FAN to
+> report `0 RPM` while CPU_FAN keeps working. The `active fan config=...`
+> dmesg line above will reveal a stale forced setting at a glance.
+>
+> Reference: issue #167 (MSI MPG B650 CARBON WIFI, MS-7D74).
