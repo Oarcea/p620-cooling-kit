@@ -1,4 +1,11 @@
-# ThinkStation P620 cooling kit
+# Lenovo ThinkStation P620 fan control on Linux (cooling kit)
+
+Working fan control for the **Lenovo ThinkStation P620** on Linux: the out-of-tree **nct6687d**
+driver for its Nuvoton NCT6686D chip, lm-sensors labels for every header, a small **fan-curve daemon**
+(systemd) that ties each fan header to the CPU or to a specific GPU, a KDE System Monitor page, and
+the stress tests and logs used to tune it. It was built for one machine with **passive datacenter
+GPUs (Tesla P100)** cooled by shroud fans on the DIMM headers, but the driver, the header map (§2)
+and the daemon should work on any P620 (tested on one). On another P620, replace the GPU UUIDs and curves with your own (§6, §7).
 
 Everything needed to rebuild the fan control on this Lenovo ThinkStation P620 after an OS reinstall
 or a move to another Linux distribution. Built and verified 16–18 Nov 2026 on Ubuntu 24.04, moved to Ubuntu 26.04 on 20–23 Nov 2026 (last update:
@@ -26,7 +33,7 @@ driver source, so it does not depend on GitHub still having it.
 |---|---|---|
 | `1-driver/` | `install-driver.sh` and a snapshot of the out-of-tree **nct6687d** driver (`nct6687d-src/`, commit in `SOURCE.txt`) | `sudo bash install-driver.sh`, then reboot |
 | `2-sensors/` | `p620-nct6686.conf`: lm-sensors labels for the headers | `sudo bash install-labels.sh` |
-| `3-fans/` | **p620-fans** service: `p620-fans.py` daemon, `p620-fans.conf` curves (v9), systemd unit, `install.sh`; earlier versions in `curve-history/`; `variants/p620-fans.gpu-only.conf` hands CPU/case fans back to the BIOS | `sudo bash install.sh` |
+| `3-fans/` | **p620-fans** service: `p620-fans.py` daemon, `p620-fans.conf` curves (v10), systemd unit, `install.sh`; earlier versions in `curve-history/`; `variants/p620-fans.gpu-only.conf` hands CPU/case fans back to the BIOS | `sudo bash install.sh` |
 | `4-kde/` | KDE System Monitor page "GPUs & Cooling" (regenerated at every login for the current slot layout) and the `ksystemstats-p620` plugin (smooth CPU temperature) | `bash install.sh` as your normal user |
 | `5-tests/` | Stress tests, fan identification and diagnostics | see §8 |
 | `6-results/` | Logs from every test run (CSV), summarised in §9 | none |
@@ -683,3 +690,15 @@ rm ~/.local/share/plasma-systemmonitor/p620-cooling.page
 
 > Warning: with the firmware back in control, the DIMM headers (P100 fans) drop to 0 % at
 > idle. Passive P100s then reach about 80 °C under any load. Don't run GPU work without p620-fans.
+
+---
+
+## 13. License
+
+The scripts, configs, KDE page and documentation in this repository are released under the
+[MIT License](LICENSE). The bundled driver in `1-driver/nct6687d-src/` is
+[nct6687d](https://github.com/Fred78290/nct6687d) by Frederic Boltz, licensed under GPL-2.0
+(see its own `LICENSE`).
+
+No warranty: you are taking manual control of the fans. A wrong curve or a stopped service can
+let passive GPUs or the CPU overheat. Watch temperatures after every change (§4, §9).
